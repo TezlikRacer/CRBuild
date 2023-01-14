@@ -1,25 +1,7 @@
 ######################################################################################
-Dubs Stagelist [Bird]
+NE Stagelist [Bird]
 ######################################################################################
-* 24523400 00000001 # If 80523400 is greater than 1
-op mr r0, r4				@ $806B8F5C # Access stage location in table
-op lbzx r3, r3, r0			@ $806B8F64	# Entry variable is a byte, rather than a half
-op rlwinm r0, r3, 1, 0, 30	@ $800AF618	# Access stage to load
-op addi r4, r4, 2			@ $800AF68C	# Table entry size
-op rlwinm r3, r3, 1, 0, 30	@ $800AF6AC	# \ Relates to loading the stage frame icon
-op lbz r0, 1(r3)			@ $800AF6C0	# /
-op li r3, -1				@ $800AF6E8	# Disables message?
-op li r3, 0xC				@ $800AF59C	# Disables stage unlocking
-CODE @ $800B91C8
-{
-	stmw r29, 0x14(r1)
-	mr r31, r6
-	mr r30, r5
-	mr r29, r3
-	cmpwi cr2, r5, -1
-	beq- cr2, 0x14		
-}
-
+* 20523400 00000004 # If 80523400 is 4
 .BA<-TABLE_STAGES
 .BA->$80495D00
 .BA<-TABLE_1
@@ -36,19 +18,20 @@ CODE @ $800B91C8
 
 TABLE_1:
 	byte[10] |
-0x12, | # Subspace Plains
-0x01, | # Final Destination
-0x0F, | # Saffron City
-0x17, | # Bridge of Eldin
-0x15, | # Wario Land
-0x1C, | # Green Hill Zone
+0x3C, | # Poke Floats
+0x0C, | # Yoshi's Island
 0x1A, | # Smashville
+0x0A, | # Metroid Lab
+0x12, | # Subspace Plains
+0x2B, | # Training Room
+0x17, | # Bridge of Eldin
 0x00, | # Battlefield
 0x28, | # Pokemon Stadium 2
-0x05  | # Molgera's Lair
+0x01  | # Final Destination
+
 
 TABLE_2:
-	byte[25] |
+	byte[27] |
 0x24, | # Peach's Castle
 0x1B, | # Shadow Moses Island
 0x06, | # Kongo Jungle
@@ -56,37 +39,40 @@ TABLE_2:
 0x22, | # Onett
 0x26, | # Big Blue
 0x0E, | # Lylat Cruise
-0x13, | # Flat Zone 2
-0x03, | # Luigi's Mansion
-0x07, | # Rumble Falls
-0x25, | # Corneria
+0x0F, | # Saffron City
 0x08, | # Pirate Ship
+0x25, | # Corneria
 0x27, | # Planet Zebes
+0x23, | # Dream Land
+0x15, | # Wario Land
+0x04, | # Metal Cavern
+0x1C, | # Green Hill Zone
+0x02, | # Delfino's Secret
+0x18, | # Fountain of Dreams
+0x05, | # Molgera's Lair
+0x2E, | # Clock Town
 0x1F, | # Temple
-0x0C, | # Yoshi's Island
-0x2B, | # Training Room
 0x10, | # Spear Pillar
 0x34, | # Bell Tower
 0x0D, | # Halberd
 0x0B, | # Frigate Orpheon
 0x14, | # Castle Siege
 0x1D, | # PictoChat
-0x04, | # Metal Cavern
-0x23, | # Dream Land
 0x20  | # Yoshi's Story
 
 TABLE_3:
-	byte[24] |
+	byte[22] |
 0x31, | # Dinosaur Land
 0x2D, | # Mario Circuit
 0x38, | # Mushroom Kingdom
 0x3B, | # Rainbow Cruise
 0x32, | # Oil Drum Alley
 0x33, | # Jungle Japes
-0x2E, | # Clock Town
 0x36, | # Cookie Country
 0x39, | # WarioWare, Inc.
-0x3C, | # Poke Floats
+0x13, | # Flat Zone 2
+0x03, | # Luigi's Mansion
+0x07, | # Rumble Falls
 0x1E, | # Sky Sanctuary Zone
 0x35, | # Norfair
 0x2F, | # Hanenbow
@@ -96,10 +82,7 @@ TABLE_3:
 0x3A, | # Subspace
 0x21, | # Golden Temple
 0x09, | # Hyrule Castle
-0x18, | # Fountain of Dreams
 0x11, | # Port Town
-0x0A, | # Metroid Lab
-0x02, | # Delfino's Secret
 0x16  | # Distant Planet
 
 TABLE_4:	# Unused
@@ -129,10 +112,10 @@ half[61] |	# Stage Count + 2
 
 SkipStageTables:
 .RESET
-* 24523400 00000001 # If 80523400 is greater than 1
+* 20523400 00000004 # If 80523400 is 4
 byte 10 @ $806B929C # Page 1
-byte 25 @ $806B92A4 # Page 2
-byte 24 @ $80496002 # Page 3
+byte 27 @ $806B92A4 # Page 2
+byte 22 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
 byte 59 @ $800AF673 # Stage Count
