@@ -282,10 +282,10 @@ string "/menu2/db_menumain.pac"         @ $806FB248
 string "db_menumain_en.pac"             @ $817F62BC
 string "/menu2/db_selcharacter2.pac"    @ $806FF308
 string "db_selcharacter2_en.pac"        @ $817F634D
-string "/menu2/db_selmap.pac"           @ $806FF3F0
-string "db_selmap_en.pac"               @ $817F637C
-string "stageslotdubs/"                 @ $80550C98 # This address might change and crash
-string "stageinfodubs/"                 @ $80550CA8 # This address might change and crash
+string "/menu2/ne_selmap.pac"         @ $806FF3F0
+string "ne_selmap_en.pac"             @ $817F637C
+string "stageslotne/"                 @ $80550C58 # This address might change and crash
+string "stageinfone/"                 @ $80550C68 # This address might change and crash
 * E0000000 80008000
 
 ##############################################################################################################################
