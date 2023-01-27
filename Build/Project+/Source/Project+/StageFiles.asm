@@ -1251,7 +1251,6 @@ op lwz r4, 0x5D00(r4)	@ $800AF6A8
 op lis r4, 0x8049		@ $800AF6D8
 op lwz r4, 0x5D00(r4)	@ $800AF6E0
 
-.include Source/Stagelists/PMBRStagelist.asm
-
+.include Source/Project+/StageTable.asm
 
 
