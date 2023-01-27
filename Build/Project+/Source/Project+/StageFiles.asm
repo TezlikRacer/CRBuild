@@ -650,6 +650,7 @@ If No Song Titles Are Found, Obtain Them From The TLST File [DukeItOut]
 .alias tlstSongSize = 0x10		# Data block size for each available song
 # 
 op b -0x158 @ $800DE81C # Go to below
+op li r5, -2 @ $800DE6D4
 # Force it to read for a title, even if the title section isn't present in the info pac file
 HOOK @ $800DE6C4
 {
@@ -673,7 +674,7 @@ HOOK @ $800DE6C4
 forceRead:
 	lwz r3, 0x164(r30)
 	li r4, 0
-	li r5, -1
+	li r5, -2
 	lis r12, 0x800D
 	ori r12, r12, 0xE6D8
 	mtctr r12
@@ -687,24 +688,8 @@ wasFound:
 HOOK @ $800B91F0 
 {
 	li r3, 0		# Normally tells it that it is false
-	lwz r12, 0(r1)	# \
-	lwz r12, 0(r12)	# | Try to determine the code that called this.
-	lwz r12, 0(r12) # |
-	lwz r12, 4(r12) # /
-	lis r5, 0x8095			# \
-	ori r5, r5, 0x1214		# | Check if this is a 1-P battle starting
-	cmpw r12, r5			# |
-	beq+ enteringBattle		# /
-	lis r5, 0x8095			# \
-	ori r5, r5, 0x11D8		# | Check if a countdown is starting
-	cmpw r12, r5			# |
-	beq+ enteringBattle		# /
-	lwz r12, 0(r1)			# \ 
-	lwz r12, 4(r12)			# / Check again.
-	lis r5, 0x8117			# \
-	ori r5, r5, 0xF428		# | Check if this is My Music
-	cmpw r12, r5			# |
-	bne+ %END%				# /
+	cmpwi r5, -2	# Check if this is a custom tracklist title request
+	bne+ %END%		# 
 entertingMyMusic:
 enteringBattle:
 
@@ -794,10 +779,11 @@ finishProcess:
 	li r3, 1				# Force it to assume it is successful
 }
 # Force My Music to load titles from the TLST (modified by Desi to remove song limit on My Music)
+#
+# Fixed issue where altering the My Music menu too extensively would break compatibility with this code
 HOOK @ $8117F418
 {
-	lis r4, 0x8152				#\Get Song ID, but load from 8053F200 instead of 81521880
-	ori r4, r4, 0x1880			#|
+	addi r4, r3, 0x40			#\Get Song ID, but load from 8053F200 instead of 81521880
 	subf r4, r4, r25			#|
 	mulli r4, r4, 0x4			#|
 	lis r5, 0x8053				#|
@@ -807,7 +793,7 @@ HOOK @ $8117F418
 	lis r4, 0x8054				# \ Place the song ID
 	stw r5, -0x102C(r4)			# /	
 	li r4, 0					#
-	li r5, -1					# Activate behavior acknowledging no title file
+	li r5, -2					# Activate behavior acknowledging no title file
 }
 
 # Redirect the title information to the TLST
@@ -1167,6 +1153,27 @@ HOOK @ $806E3D2C
 }
 byte 0x58 @ $8070294D	# "X"
 
+############################
+Crush anywhere anytime [Eon] 
+############################
+op nop @ $8083b1ac 
+
+#####################################################################################
+Crush effect in ef_StgBattleField outside of SSE [DukeItOut]
+#
+#Requires a special ef_StgBattleField pac file to be included in the stage to show up
+#Requires "Crush anywhere anytime [Eon]" to function
+#####################################################################################
+HOOK @ $8087C838
+{
+	ori r4, r4, 18		# Get SSE effect
+	lis r3, 0x80B8
+	lwz r3, 0x7C28(r3)
+	lbz r0, 0x68(r3)
+	cmplwi r0, 1; beq+ %END% 	# Branch if in SSE
+	lis r4, 0x32; ori r4, r4, 1		# First effect ID in ef_StgBattlefield 
+}
+
 ############################################################################
 Stage Builder Can Not Save to Wii NAND [DukeItOut]
 #
@@ -1212,9 +1219,26 @@ HOOK @ $8009D0C0
     stw r12, 0xB8(r3)       # sets Camera Speed from PAC, used to do so from f2
 }
 
-.include Source/Stagelists/PMBRStagelist.asm
-.include Source/Stagelists/DubsStagelist.asm
-.include Source/Stagelists/NEStagelist.asm
+######################################################################################
+Custom Stage Select Screen V2 [Spunit, Phantom Wings, SOJ, Yohan1044, DukeItOut, JOJI]
+######################################################################################
+op mr r0, r4				@ $806B8F5C # Access stage location in table
+op lbzx r3, r3, r0			@ $806B8F64	# Entry variable is a byte, rather than a half
+op rlwinm r0, r3, 1, 0, 30	@ $800AF618	# Access stage to load
+op addi r4, r4, 2			@ $800AF68C	# Table entry size
+op rlwinm r3, r3, 1, 0, 30	@ $800AF6AC	# \ Relates to loading the stage frame icon
+op lbz r0, 1(r3)			@ $800AF6C0	# /
+op li r3, -1				@ $800AF6E8	# Disables message?
+op li r3, 0xC				@ $800AF59C	# Disables stage unlocking
+CODE @ $800B91C8
+{
+	stmw r29, 0x14(r1)
+	mr r31, r6
+	mr r30, r5
+	mr r29, r3
+	cmpwi cr2, r5, -1
+	ble- cr2, 0x14		
+}
 
 op lis r4, 0x8049 		@ $800AF58C
 op lwz r4, 0x5D00(r4)	@ $800AF594
@@ -1226,3 +1250,8 @@ op lis r4, 0x8049		@ $800AF6A0
 op lwz r4, 0x5D00(r4)	@ $800AF6A8
 op lis r4, 0x8049		@ $800AF6D8
 op lwz r4, 0x5D00(r4)	@ $800AF6E0
+
+.include Source/Stagelists/PMBRStagelist.asm
+
+
+
