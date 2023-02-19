@@ -48,8 +48,6 @@ PULSE
 }
 
 * E2000002 00000000
-[Project+] Skip strap screen [PyotrLuzhin]
-* 046CADE8 48000298
 
 ##################################################
 [Legacy TE] Boot Directly to CSS v4  [PyotrLuzhin]
@@ -68,6 +66,7 @@ HOOK @ $8002D3A0
   li r30, 0x0
 }
 op b 0x10 @ $80078E14
+* 046CADE8 48000298
 
 #############################################################################
 Reset multipac stage lock status between Classic & All-Star matches [wiiztec]
@@ -303,10 +302,10 @@ Default Settings Modifier [Igglyboo, Brkirch, and FMK]
 * 42000000 90000000
 * 0417F360 00000100
 * 0417F364 04000A00
-* 0417F368 08010101
+* 0417F368 08010100
 * 0417F36C 00000000
-* 0417BE74 04801401 # Brawl stages
-* 0417BE70 00020000 # Melee stages
+* 0417BE74 04081209 # Brawl stages
+* 0417BE70 00021000 # Melee stages
 * E0000000 80008000
 
 ###################################
