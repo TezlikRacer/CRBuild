@@ -15,18 +15,20 @@ Stage Select Screen Table Data
 .GOTO->SkipStageTables
 
 TABLE_1:
-	byte[11] |
+	byte[12] |
 0x0C, | # Yoshi's Island
 0x09, | # Hyrule Castle
 0x23, | # Dream Land
-0x01, | # Final Destination
 0x13, | # Castle Siege
 0x1A, | # Smashville
 0x00, | # Battlefield
 0x28, | # Pokemon Stadium 2
 0x03, | # Luigi's Mansion
 0x2B, | # Training Room
+0x2B, | # Training Room
+0x2B, | # Training Room
 0x2B  | # Training Room
+
 
 
 TABLE_2:
@@ -59,7 +61,7 @@ TABLE_2:
 
 
 TABLE_3:
-	byte[24] |
+	byte[23] |
 0x24, | # Peach's Castle
 0x0E, | # Lylat Cruise
 0x05, | # Bowser's Castle
@@ -76,7 +78,6 @@ TABLE_3:
 0x2E, | # Clock Town
 0x36, | # Cookie Country
 0x39, | # WarioWare, Inc.
-0x3C, | # Poke Floats
 0x34, | # Bell Tower
 0x35, | # Norfair
 0x2F, | # Hanenbow
@@ -114,9 +115,9 @@ half[61] |	# Stage Count + 2
 SkipStageTables:
 .RESET
 
-byte 11 @ $806B929C # Page 1
+byte 12 @ $806B929C # Page 1
 byte 25 @ $806B92A4 # Page 2
-byte 24 @ $80496002 # Page 3
+byte 23 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
 byte 61 @ $800AF673 # Stage Count
