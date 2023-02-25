@@ -33,6 +33,7 @@ TABLE_1:
 
 TABLE_2:
 	byte[25] |
+0x01, | # Final Destination
 0x1E, | # Sky Sanctuary Zone
 0x0A, | # Metroid Lab
 0x20, | # Yoshi's Story
@@ -57,11 +58,11 @@ TABLE_2:
 0x0B, | # Frigate Orpheon
 0x17, | # Skyworld
 0x04, | # Metal Cavern
-0x1D  | # PictoChat
+
 
 
 TABLE_3:
-	byte[23] |
+	byte[24] |
 0x24, | # Peach's Castle
 0x0E, | # Lylat Cruise
 0x05, | # Bowser's Castle
@@ -84,7 +85,8 @@ TABLE_3:
 0x37, | # Venus Lighthouse
 0x2C, | # Dracula's Castle
 0x30, | # Dead Line
-0x3A  | # Subspace
+0x3A, | # Subspace
+0x1D  | # PictoChat
 
 TABLE_4:	# Unused
 TABLE_5:	# Unused
@@ -117,7 +119,7 @@ SkipStageTables:
 
 byte 12 @ $806B929C # Page 1
 byte 25 @ $806B92A4 # Page 2
-byte 23 @ $80496002 # Page 3
+byte 24 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
 byte 61 @ $800AF673 # Stage Count

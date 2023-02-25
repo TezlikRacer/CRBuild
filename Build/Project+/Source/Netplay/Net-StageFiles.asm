@@ -1253,73 +1253,78 @@ CODE @ $800B91C8
 .GOTO->SkipStageTables
 
 TABLE_1:
-	byte[10] |
-0x3C, | # Poke Floats
+	byte[12] |
 0x0C, | # Yoshi's Island
+0x09, | # Hyrule Castle
+0x23, | # Dream Land
+0x13, | # Castle Siege
 0x1A, | # Smashville
-0x0A, | # Metroid Lab
-0x12, | # Subspace Plains
-0x2B, | # Training Room
-0x17, | # Bridge of Eldin
 0x00, | # Battlefield
 0x28, | # Pokemon Stadium 2
-0x01  | # Final Destination
+0x03, | # Luigi's Mansion
+0x2B, | # Training Room
+0x2B, | # Training Room
+0x2B, | # Training Room
+0x2B  | # Training Room
+
 
 
 TABLE_2:
-	byte[27] |
+	byte[25] |
+0x01, | # Final Destination
+0x1E, | # Sky Sanctuary Zone
+0x0A, | # Metroid Lab
+0x20, | # Yoshi's Story
+0x1C, | # Green Hill Zone
+0x02, | # Delfino's Secret
+0x16, | # Distant Planet
+0x12, | # Infinite Glacier
+0x15, | # Wario Land
+0x18, | # Fountain of Dreams
+0x22, | # Onett
+0x26, | # Big Blue
+0x11, | # Port Town Aero Dive
+0x07, | # Rumble Falls
+0x25, | # Corneria
+0x27, | # Planet Zebes
+0x1F, | # Temple
+0x08, | # Pirate Ship
+0x2B, | # Training Room
+0x10, | # Spear Pillar
+0x0F, | # Saffron City
+0x0D, | # Halberd
+0x0B, | # Frigate Orpheon
+0x17, | # Skyworld
+0x04, | # Metal Cavern
+
+
+
+TABLE_3:
+	byte[24] |
 0x24, | # Peach's Castle
+0x0E, | # Lylat Cruise
+0x05, | # Bowser's Castle
+0x21, | # Golden Temple
 0x1B, | # Shadow Moses Island
 0x06, | # Kongo Jungle
 0x19, | # Fourside
-0x22, | # Onett
-0x26, | # Big Blue
-0x0E, | # Lylat Cruise
-0x0F, | # Saffron City
-0x08, | # Pirate Ship
-0x25, | # Corneria
-0x27, | # Planet Zebes
-0x23, | # Dream Land
-0x15, | # Wario Land
-0x04, | # Metal Cavern
-0x1C, | # Green Hill Zone
-0x02, | # Delfino's Secret
-0x18, | # Fountain of Dreams
-0x05, | # Molgera's Lair
-0x2E, | # Clock Town
-0x1F, | # Temple
-0x10, | # Spear Pillar
-0x34, | # Bell Tower
-0x0D, | # Halberd
-0x0B, | # Frigate Orpheon
-0x14, | # Castle Siege
-0x1D, | # PictoChat
-0x20  | # Yoshi's Story
-
-TABLE_3:
-	byte[22] |
 0x31, | # Dinosaur Land
 0x2D, | # Mario Circuit
 0x38, | # Mushroom Kingdom
 0x3B, | # Rainbow Cruise
 0x32, | # Oil Drum Alley
 0x33, | # Jungle Japes
+0x2E, | # Clock Town
 0x36, | # Cookie Country
 0x39, | # WarioWare, Inc.
-0x13, | # Flat Zone 2
-0x03, | # Luigi's Mansion
-0x07, | # Rumble Falls
-0x1E, | # Sky Sanctuary Zone
+0x34, | # Bell Tower
 0x35, | # Norfair
 0x2F, | # Hanenbow
 0x37, | # Venus Lighthouse
 0x2C, | # Dracula's Castle
 0x30, | # Dead Line
 0x3A, | # Subspace
-0x21, | # Golden Temple
-0x09, | # Hyrule Castle
-0x11, | # Port Town
-0x16  | # Distant Planet
+0x1D  | # PictoChat
 
 TABLE_4:	# Unused
 TABLE_5:	# Unused
@@ -1346,14 +1351,16 @@ half[61] |	# Stage Count + 2
 0x4C2F, 0x4D30, 0x4E31, 0x4F3D, | # Mushroom Kingdom, WarioWare, Subspace, Rainbow Cruise
 0x503E				| # Poke Floats
 
+
 SkipStageTables:
 .RESET
-byte 10 @ $806B929C # Page 1
-byte 27 @ $806B92A4 # Page 2
-byte 22 @ $80496002 # Page 3
+
+byte 12 @ $806B929C # Page 1
+byte 25 @ $806B92A4 # Page 2
+byte 24 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
-byte 59 @ $800AF673 # Stage Count
+byte 61 @ $800AF673 # Stage Count
 
 
 op lis r4, 0x8049 		@ $800AF58C
