@@ -15,7 +15,12 @@ op blt- 0x34	   @ $8018CFC8
 .include Source/Project+/Timeout.asm
 .include Source/Project+/UCF.asm
 .include Source/Project+/PSA.asm
+.include Source/Project+/AnimatedCSS.asm
+.include Source/Project+/Hurtbox.asm
+
+.include Source/ProjectM/IdleAudioFade.asm
 .include Source/ProjectM/Constants.asm
+
 .include Source/ProjectM/PSA/Effects.asm
 .include Source/ProjectM/PSA/Misc.asm
 .include Source/ProjectM/PSA/Tethers.asm
