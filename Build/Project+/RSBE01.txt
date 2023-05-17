@@ -48,6 +48,8 @@ PULSE
 }
 
 * E2000002 00000000
+[Project+] Skip strap screen [PyotrLuzhin]
+* 046CADE8 48000298
 
 ######################################################
 BA and BLA are usable instructions v1.3 [Eon, taukhan]
