@@ -68,7 +68,7 @@ TABLE_2:
 0x2B  | # Training Room
 
 TABLE_3:
-	byte[18] |
+	byte[19] |
 0x31, | # Dinosaur Land
 0x2D, | # Mario Circuit
 0x38, | # Mushroom Kingdom
@@ -82,6 +82,7 @@ TABLE_3:
 0x3C, | # Poke Floats
 0x34, | # Bell Tower
 0x35, | # Norfair
+0x3E, | # Venom
 0x2F, | # Hanenbow
 0x37, | # Venus Lighthouse
 0x2C, | # Dracula's Castle
@@ -93,7 +94,7 @@ TABLE_5:	# Unused
 
 TABLE_STAGES:
 # Table of icon<->stage slot associations
-half[62] |	# Stage Count + 2
+half[63] |	# Stage Count + 2
 | # OLD SLOTS
 0x0101, 0x0202, 0x0303, 0x0404, | # Battlefield, Final Destination, Delfino's Secret, Luigi's Mansion
 0x0505, 0x0606, 0x0707, 0x0808, | # Metal Cavern, Bowser's Castle, Kongo Jungle, Rumble Falls
@@ -111,7 +112,7 @@ half[62] |	# Stage Count + 2
 0x4427, 0x4528, 0x4629, 0x2B34, | # Dead Line, Dinosaur Land, Oil Drum Alley, Jungle Japes
 0x482B, 0x0B0B, 0x4A2D, 0x4B2E, | # Bell Tower, Norfair, Cookie Country, Venus Lighthouse
 0x4C2F, 0x4D30, 0x4E31, 0x4F3D, | # Mushroom Kingdom, WarioWare, Subspace, Rainbow Cruise
-0x503E, 0x513F			  | # Poke Floats, Pirate Ship
+0x503E, 0x513F, 0x5240		| # Poke Floats, Pirate Ship, Venom
 
 
 SkipStageTables:
@@ -119,10 +120,10 @@ SkipStageTables:
 * 20523400 00000000 # If 80523400 is equal to 0
 byte 21 @ $806B929C # Page 1
 byte 21 @ $806B92A4 # Page 2
-byte 18 @ $80496002 # Page 3
+byte 19 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
-byte 60 @ $800AF673 # Stage Count
+byte 61 @ $800AF673 # Stage Count
 * E0000000 80008000
 
 op lis r4, 0x8049 	@ $800AF58C
@@ -203,7 +204,7 @@ TABLE_2:
 0x2B  | # Training Room
 
 TABLE_3:
-	byte[26] |
+	byte[27] |
 0x01, | # Final Destination
 0x31, | # Dinosaur Land
 0x2D, | # Mario Circuit
@@ -220,6 +221,7 @@ TABLE_3:
 0x3C, | # Poke Floats
 0x34, | # Bell Tower
 0x35, | # Norfair
+0x3E, | # Venom
 0x0A, | # Ceres Space Colony
 0x14, | # Castle Siege
 0x16, | # Distant Planet
@@ -236,7 +238,7 @@ TABLE_5:	# Unused
 
 TABLE_STAGES:
 # Table of icon<->stage slot associations
-half[62] |	# Stage Count + 2
+half[63] |	# Stage Count + 2
 | # OLD SLOTS
 0x0101, 0x0202, 0x0303, 0x0404, | # Battlefield, Final Destination, Delfino's Secret, Luigi's Mansion
 0x0505, 0x0606, 0x0707, 0x0808, | # Metal Cavern, Bowser's Castle, Kongo Jungle, Rumble Falls
@@ -254,7 +256,7 @@ half[62] |	# Stage Count + 2
 0x4427, 0x4528, 0x4629, 0x2B34, | # Dead Line, Dinosaur Land, Oil Drum Alley, Jungle Japes
 0x482B, 0x0B0B, 0x4A2D, 0x4B2E, | # Bell Tower, Norfair, Cookie Country, Venus Lighthouse
 0x4C2F, 0x4D30, 0x4E31, 0x4F3D, | # Mushroom Kingdom, WarioWare, Subspace, Rainbow Cruise
-0x503E, 0x513F			  | # Poke Floats, Pirate Ship
+0x503E, 0x513F, 0x5240		| # Poke Floats, Pirate Ship, Venom
 
 
 SkipStageTables:
@@ -262,10 +264,10 @@ SkipStageTables:
 * 20523400 00000001 # If 80523400 is equal to 1
 byte 12 @ $806B929C # Page 1
 byte 26 @ $806B92A4 # Page 2
-byte 26 @ $80496002 # Page 3
+byte 27 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
-byte 60 @ $800AF673 # Stage Count
+byte 61 @ $800AF673 # Stage Count
 * E0000000 80008000
 
 op lis r4, 0x8049 	@ $800AF58C
@@ -363,6 +365,7 @@ TABLE_3:
 0x3C, | # Poke Floats
 0x34, | # Bell Tower
 0x35, | # Norfair
+0x3E, | # Venom
 0x0A, | # Ceres Space Colony
 0x14, | # Castle Siege
 0x16, | # Distant Planet
@@ -379,7 +382,7 @@ TABLE_5:	# Unused
 
 TABLE_STAGES:
 # Table of icon<->stage slot associations
-half[62] |	# Stage Count + 2
+half[63] |	# Stage Count + 2
 | # OLD SLOTS
 0x0101, 0x0202, 0x0303, 0x0404, | # Battlefield, Final Destination, Delfino's Secret, Luigi's Mansion
 0x0505, 0x0606, 0x0707, 0x0808, | # Metal Cavern, Bowser's Castle, Kongo Jungle, Rumble Falls
@@ -397,7 +400,7 @@ half[62] |	# Stage Count + 2
 0x4427, 0x4528, 0x4629, 0x2B34, | # Dead Line, Dinosaur Land, Oil Drum Alley, Jungle Japes
 0x482B, 0x0B0B, 0x4A2D, 0x4B2E, | # Bell Tower, Norfair, Cookie Country, Venus Lighthouse
 0x4C2F, 0x4D30, 0x4E31, 0x4F3D, | # Mushroom Kingdom, WarioWare, Subspace, Rainbow Cruise
-0x503E, 0x513F			  | # Poke Floats, Pirate Ship
+0x503E, 0x513F, 0x5240		| # Poke Floats, Pirate Ship, Venom
 
 
 SkipStageTables:
@@ -405,10 +408,10 @@ SkipStageTables:
 * 20523400 00000002 # If 80523400 is equal to 2
 byte 12 @ $806B929C # Page 1
 byte 26 @ $806B92A4 # Page 2
-byte 26 @ $80496002 # Page 3
+byte 27 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
-byte 60 @ $800AF673 # Stage Count
+byte 61 @ $800AF673 # Stage Count
 * E0000000 80008000
 
 op lis r4, 0x8049 	@ $800AF58C
@@ -489,7 +492,7 @@ TABLE_2:
 0x2B  | # Training Room
 
 TABLE_3:
-	byte[26] |
+	byte[27] |
 0x31, | # Dinosaur Land
 0x2D, | # Mario Circuit
 0x38, | # Mushroom Kingdom
@@ -506,6 +509,7 @@ TABLE_3:
 0x3C, | # Poke Floats
 0x34, | # Bell Tower
 0x35, | # Norfair
+0x3E, | # Venom
 0x0A, | # Ceres Space Colony
 0x14, | # Castle Siege
 0x16, | # Distant Planet
@@ -522,7 +526,7 @@ TABLE_5:	# Unused
 
 TABLE_STAGES:
 # Table of icon<->stage slot associations
-half[62] |	# Stage Count + 2
+half[63] |	# Stage Count + 2
 | # OLD SLOTS
 0x0101, 0x0202, 0x0303, 0x0404, | # Battlefield, Final Destination, Delfino's Secret, Luigi's Mansion
 0x0505, 0x0606, 0x0707, 0x0808, | # Metal Cavern, Bowser's Castle, Kongo Jungle, Rumble Falls
@@ -540,7 +544,7 @@ half[62] |	# Stage Count + 2
 0x4427, 0x4528, 0x4629, 0x2B34, | # Dead Line, Dinosaur Land, Oil Drum Alley, Jungle Japes
 0x482B, 0x0B0B, 0x4A2D, 0x4B2E, | # Bell Tower, Norfair, Cookie Country, Venus Lighthouse
 0x4C2F, 0x4D30, 0x4E31, 0x4F3D, | # Mushroom Kingdom, WarioWare, Subspace, Rainbow Cruise
-0x503E, 0x513F			  | # Poke Floats, Pirate Ship
+0x503E, 0x513F, 0x5240		| # Poke Floats, Pirate Ship, Venom
 
 
 SkipStageTables:
@@ -548,10 +552,10 @@ SkipStageTables:
 * 20523400 00000003 # If 80523400 is equal to 3
 byte 11 @ $806B929C # Page 1
 byte 27 @ $806B92A4 # Page 2
-byte 26 @ $80496002 # Page 3
+byte 27 @ $80496002 # Page 3
 byte 00 @ $80496003 # Page 4 (Unused)
 byte 00 @ $80496004 # Page 5 (Unused)
-byte 60 @ $800AF673 # Stage Count
+byte 61 @ $800AF673 # Stage Count
 * E0000000 80008000
 
 op lis r4, 0x8049 		@ $800AF58C

@@ -502,6 +502,8 @@ CODE @ $8053E000
 	li r0, 0xFF				# Clear random reroll flag for substages
 	stb r0, -0x7E(r12)		#
 	sth r7, -0x80(r12)		# Store stage ID
+	lhz r4, 2(r28)			#
+	sth r4, -0x46(r12)		# Store stage ASL ID
 	addi r3, r1, 0x90
 	lwz r4, -0x20(r12)		# "%s%s%02X%s"
 	lwz r5, -0x1C(r12)		# "/stage/"
