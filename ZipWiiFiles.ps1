@@ -1,1 +1,0 @@
-Compress-Archive -Path ./Build/ "CRBuild Wii.zip"
